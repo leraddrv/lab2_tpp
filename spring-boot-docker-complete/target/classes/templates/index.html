@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: "Comic Sans MS", sans-serif;
+            background-color: #ffe6f2;
+        }
+
+        .calculator-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 25px;
+            background-color: #fff0f5;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #ff99cc;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #cc0052;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #b30047;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ff99cc;
+            border-radius: 6px;
+            font-size: 16px;
+            text-align: center;
+            color: #cc0052;
+            background-color: #ffe6f2;
+        }
+
+        button {
+            background-color: #ff66b2;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff3399;
+        }
+
+        .result, .error {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #e60073;
+        }
+
+        .result {
+            color: #ff66b2;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Cute Calculator</h1>
+
+        <form action="/calculate" method="post">
+            <label for="expression">Enter your expression:</label>
+            <input type="text" id="expression" name="expression" placeholder="e.g., 5+3*2" required>
+            <button type="submit">Calculate</button>
+        </form>
+
+        <div>
+            <p th:if="${result != null}" class="result">Result: <span th:text="${result}"></span></p>
+            <p th:if="${error != null}" class="error">Error: <span th:text="${error}"></span></p>
+        </div>
+    </div>
+</body>
+</html>
